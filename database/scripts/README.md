@@ -72,6 +72,9 @@ cd "<ruta-a-la-raiz-del-repositorio>\sistema-ventas\database\scripts"
 
 Si la ejecución es correcta, la consola mostrará mensajes de inicio y cierre. La línea `Presione una tecla para continuar . . .` corresponde a la salida estándar del comando `PAUSE`, que mantiene la ventana abierta hasta que se presione una tecla.
 
+> Nota: `example.bat` no corta la ejecución automáticamente si un `sqlcmd` falla.  
+> El mensaje final de “SE HA CREADO EXITOSAMENTE” es solo informativo; confirma que no hubo errores revisando la salida de cada `sqlcmd` en la consola.
+
 Ejemplo de salida correcta:
 
 ```text
