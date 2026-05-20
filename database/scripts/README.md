@@ -23,12 +23,15 @@ Antes de ejecutar el script verifica lo siguiente:
 
 ## Configuración
 
-El archivo [example.bat](example.bat) incluye valores de marcador que debes reemplazar antes de usarlo:
+El archivo [example.bat](example.bat) incluye valores de marcador que debes reemplazar antes de usarlo. Algunos marcadores son solo informativos (mensajes en consola); el destino real de la base de datos se define dentro de los scripts `.sql`.
 
 | Marcador | Descripción | Ejemplo |
 |---|---|---|
 | `[NOMBRE-SERVIDOR]` | Nombre o instancia de SQL Server | `DESKTOP-ABC123\SQLEXPRESS` |
-| `[NOMBRE-BASE-DATOS]` | Nombre de la base de datos destino | `MiBaseDatos` |
+| `[NOMBRE-BASE-DATOS]` | Nombre de la base (solo informativo en la salida del .bat; la BD se crea/selecciona dentro de los .sql) | `MiBaseDatos` |
+
+> Nota: `example.bat` no pasa `[NOMBRE-BASE-DATOS]` a `sqlcmd` (no usa `-d`).  
+> El nombre/destino de la base se controla dentro de los scripts `.sql` (por ejemplo con `CREATE DATABASE` / `USE`).
 
 Ejemplo:
 
