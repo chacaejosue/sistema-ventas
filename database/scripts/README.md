@@ -60,15 +60,12 @@ El archivo `example.bat` ejecuta los scripts en esta secuencia:
 
 ### Desde terminal
 
+> Nota: ejecuta `example.bat` desde `database/scripts/`.  
+> Las rutas `-i <archivo>.sql` son relativas al directorio actual.
+
 ```powershell
 cd "<ruta-a-la-raiz-del-repositorio>\sistema-ventas\database\scripts"
 .\example.bat
-```
-
-Si ya te encuentras dentro de la raíz del repositorio, basta con ejecutar:
-
-```powershell
-.\database\scripts\example.bat
 ```
 
 ## Salida esperada
