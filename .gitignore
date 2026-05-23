@@ -5,6 +5,7 @@
 .env.production
 .phpactor.json
 .phpunit.result.cache
+database/scripts/Script-SistemaVentasBD.bat
 /.fleet
 /.idea
 /.nova
