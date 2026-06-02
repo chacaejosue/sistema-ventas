@@ -36,7 +36,7 @@ El archivo [example.bat](example.bat) incluye valores de marcador que debes reem
 Ejemplo:
 
 ```batch
-sqlcmd -S DESKTOP-ABC123\SQLEXPRESS -i 1-CreacionTablas.sql
+sqlcmd -S DESKTOP-ABC123\SQLEXPRESS -i 1-CreacionTablas.sql -o logs\log_creacion.txt
 ```
 
 Si el proyecto no incluye todos los componentes previstos, elimina o comenta en `example.bat` las líneas que invoquen scripts que no formen parte de la entrega final, por ejemplo índices, vistas o procedimientos auxiliares.
@@ -71,12 +71,34 @@ cd "<ruta-a-la-raiz-del-repositorio>\sistema-ventas\database\scripts"
 .\example.bat
 ```
 
+## Logs generados
+
+Al inicio `example.bat` crea la carpeta `logs` si no existe y limpia su contenido:
+
+```batch
+IF NOT EXIST logs MKDIR logs
+DEL /F /Q logs\* 2>NUL
+```
+
+Cada llamada a `sqlcmd` en `example.bat` usa la opción `-o` para volcar la salida a un archivo dentro de `logs\` (salida de consulta y mensajes de `sqlcmd`). Esto genera un fichero por cada script ejecutado, por ejemplo:
+
+- `logs\log_creacion.txt` (salida de `1-CreacionTablas.sql`)
+- `logs\log_restricciones.txt` (salida de `2-Restricciones.sql`)
+- `logs\log_procedimientos.txt` (salida de `3-ProcedimientosAlmacenados.sql`)
+- `logs\log_reglasnegocio.txt` (salida de `4-RNprocedures.sql`)
+- `logs\log_desencadenadores.txt` (salida de `5-RNDesencadenadores.sql`)
+- `logs\log_insercion.txt` (salida de `6-InserciondeDatos.sql`)
+- `logs\log_vistas.txt` (salida de `7-Vistas.sql`)
+- `logs\log_indices.txt` (salida de `8-Indices.sql`)
+
+Revisa estos archivos si hay errores durante la ejecución; suelen contener la salida y mensajes de `sqlcmd` que ayudan a diagnosticar fallos.
+
 ## Salida esperada
 
 Si la ejecución es correcta, la consola mostrará mensajes de inicio y cierre. La línea `Presione una tecla para continuar . . .` corresponde a la salida estándar del comando `PAUSE`, que mantiene la ventana abierta hasta que se presione una tecla.
 
 > Nota: `example.bat` no corta la ejecución automáticamente si un `sqlcmd` falla.  
-> El mensaje final de “SE HA CREADO EXITOSAMENTE” es solo informativo; confirma que no hubo errores revisando la salida de cada `sqlcmd` en la consola.
+> El mensaje final de “SE HA CREADO EXITOSAMENTE” es solo informativo; confirma que no hubo errores revisando los archivos de log generados por cada `sqlcmd` en la carpeta `logs/`.
 
 Ejemplo de salida correcta:
 
